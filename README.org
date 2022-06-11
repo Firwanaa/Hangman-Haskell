@@ -81,5 +81,3 @@ Using list comprehension to indicate which letters is the secret word occur anyw
 match :: String -> String -> String
 match xs ys = [if elem x ys then x else '-' | x <- xs]
 #+end_src
-
-#+RESULTS:
