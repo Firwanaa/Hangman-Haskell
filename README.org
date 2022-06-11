@@ -11,13 +11,13 @@
 - [[#enter-secret-word][Enter secret word]]
 - [[#sgetline-function][sgetLine function]]
 - [[#getch-function][getCh function]]
+- [[#play-function][play function]]
+- [[#match-function][match function]]
 
 * Hangman With Haskell
 Basics of IO programming using a variant of the game Hangman.
 * Imports
 #+begin_src haskell
-module Main where
-import Data.List
 import System.IO
 #+end_src
 * How to play:
@@ -44,12 +44,12 @@ Reads string from keyboard and echos each characters dash symbol "-".
 #+begin_src haskell
 sgetLine = do x <- getCh
               if x == '\n' then
-                do putChar x
-                     return []
+                 do putChar x
+                    return []
               else
-                do putChar '-'
-                   xs <- sgetLine
-                   return (x:xs)
+                 do putChar '-'
+                    xs <- sgetLine
+                    return (x:xs)
 #+end_src
 
 * getCh function
@@ -61,3 +61,25 @@ getCh = do hSetEcho stdin False
            hSetEcho stdin True
            return x
 #+end_src
+
+* play function
+Main loop game.
+#+begin_src haskell
+play :: String -> IO ()
+play word = do putStr "? "
+               guess <- getLine
+               if guess == word then
+                  putStrLn "You got it!!"
+               else
+                  do putStrLn (match word guess)
+                     play word
+#+end_src
+
+* match function
+Using list comprehension to indicate which letters is the secret word occur anywhere in the guess.
+#+begin_src haskell
+match :: String -> String -> String
+match xs ys = [if elem x ys then x else '-' | x <- xs]
+#+end_src
+
+#+RESULTS:
