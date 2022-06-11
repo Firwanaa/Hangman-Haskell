@@ -1,0 +1,18 @@
+#+TITLE: Programming in Haskell - Graham Hutton - Ch10 - Hangman
+#+AUTHOR: Firwanaa
+#+PROPERTY: header-args :tangle code.hs
+#+auto_tangle: t
+#+STARTUP: showeverything
+
+* TABLE OF CONTENTS :toc:
+- [[#hangman-with-haskell][Hangman With Haskell]]
+- [[#how-to-play][How to play:]]
+
+* Hangman With Haskell
+Basics of IO programming using a variant of the game Hangman.
+
+* How to play:
+- One player secretly enter a word.
+- Another player then tries to deduce the word via a series of guesses.
+- For each guess, we indicate which letter in the secret word occur in the guess.
+- The game end when the guess is correct.
